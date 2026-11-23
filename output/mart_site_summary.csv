@@ -1,0 +1,7 @@
+site_code,site_name,site_type,latitude,longitude,avg_no2_ugm3,n_hours_with_value,n_hours_total,pct_missing
+TH4,Tower Hamlets - Blackwall,Roadside,51.5150461674013,-0.00841849265642741,25.6,6469,7824,17.3
+TH2,Tower Hamlets - Mile End Road,Roadside,51.5225462561171,-0.0420823040635312,19.5,7555,7824,3.4
+TH5,Tower Hamlets - Victoria Park,Urban Background,51.5399327394691,-0.0331740581778178,13.4,6215,7824,20.6
+TH6,Tower Hamlets - Millwall Park,Urban Background,51.4891342634,-0.0129769309432,12.7,7379,7824,5.7
+TH7,Tower Hamlets - King Edward Memorial Park,Urban Background,51.5094228799835,-0.0505278232872832,17.9,7804,7824,0.3
+CW3,Tower Hamlets - Jubilee Park,Urban Background,51.5029878731458,-0.0180219908165375,17.3,5077,7824,35.1
