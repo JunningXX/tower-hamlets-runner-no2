@@ -11,10 +11,9 @@ library(DBI)
 # Connect to the DuckDB database file (created if it does not exist yet)
 con <- dbConnect(duckdb::duckdb(), "tower_hamlets_no2.duckdb")
 
-# ---- Hourly readings ---------------------------------------------------------
+# Stack all JSON files into one table, one row per file,
 # data/raw/no2/*/*.json = every file in every site folder.
 # filename = true adds a column saying which file each row came from.
-# dbExecute returns the number of rows written: one per file.
 dbExecute(con, "
   CREATE OR REPLACE TABLE raw_no2 AS
   SELECT filename,
@@ -22,17 +21,19 @@ dbExecute(con, "
   FROM read_json('data/raw/no2/*/*.json', filename = true)
 ")
 
-# ---- Site details ------------------------------------------------------------
+# Create another table to store site information
+# One JSON file only, no need for filename
 dbExecute(con, "
   CREATE OR REPLACE TABLE raw_site_species AS
   SELECT Sites
   FROM read_json('data/raw/metadata/site_species.json')
 ")
 
-# ---- Quick checks ------------------------------------------------------------
+# Quick checks 
 dbListTables(con)
 
 # Files per site, and the first and last day loaded
+# Date of the last_file should be yesterday's date.
 dbGetQuery(con, "
   SELECT RawAQData['@SiteCode'] AS site_code,
          count(*)               AS n_files,
